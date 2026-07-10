@@ -52,8 +52,8 @@ require('include/header.php');
 <section class="cv-hero">
     <div class="cv-hero-inner">
         <div class="cv-hero-left">
-            <span class="cv-hero-eyebrow">Premium Seating Solutions</span>
-            <h1>Sit Better.<br>Work Better.</h1>
+            <span class="cv-hero-eyebrow"><i class="bi bi-arrow-repeat"></i> Premium Office Chairs</span>
+            <h1>Sit Better.<br><span>Work Better.</span></h1>
             <p>ChairHive offers a curated selection of office chairs &mdash; from all-day ergonomic workhorses to executive leather seats and gaming rigs. Find the chair that fits the way you work.</p>
             <div class="cv-hero-btns">
                 <a href="store.php" class="btn-hero-primary">
@@ -64,15 +64,41 @@ require('include/header.php');
                 </a>
             </div>
             <div class="cv-hero-trust">
-                <i class="bi bi-star-fill"></i>
-                    <span>Trusted by students and staff across the CyberVision project</span>
+                <span class="cv-hero-trust-item"><i class="bi bi-shield-check"></i> Premium Quality</span>
+                <span class="cv-hero-trust-item"><i class="bi bi-truck"></i> Delivery Available</span>
+                <span class="cv-hero-trust-item"><i class="bi bi-patch-check"></i> Trusted by Professionals</span>
             </div>
         </div>
+
         <?php if ($heroImage): ?>
             <div class="cv-hero-image">
                 <img src="<?= htmlspecialchars($heroImage) ?>" alt="Featured chair">
             </div>
         <?php endif; ?>
+
+        <div class="cv-hero-features">
+            <div class="cv-hero-feature">
+                <div class="cv-hero-feature-icon"><i class="bi bi-person-arms-up"></i></div>
+                <div class="cv-hero-feature-text">
+                    <strong>Ergonomic Design</strong>
+                    <span>Supports posture and reduces fatigue.</span>
+                </div>
+            </div>
+            <div class="cv-hero-feature">
+                <div class="cv-hero-feature-icon"><i class="bi bi-gem"></i></div>
+                <div class="cv-hero-feature-text">
+                    <strong>Premium Materials</strong>
+                    <span>Built with high-quality materials for durability.</span>
+                </div>
+            </div>
+            <div class="cv-hero-feature">
+                <div class="cv-hero-feature-icon"><i class="bi bi-shield-check"></i></div>
+                <div class="cv-hero-feature-text">
+                    <strong>Built to Last</strong>
+                    <span>Tested for strength, made for everyday use.</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -80,15 +106,18 @@ require('include/header.php');
 <div class="cv-info-strip">
     <div class="cv-info-strip-inner">
         <div class="cv-info-strip-item">
-            <h5><i class="bi bi-award"></i> &nbsp;Premium Quality</h5>
+            <div class="cv-info-icon"><i class="bi bi-award"></i></div>
+            <h5>Premium Quality</h5>
             <p>Every chair is selected for comfort, build quality, and durability</p>
         </div>
         <div class="cv-info-strip-item">
-            <h5><i class="bi bi-truck"></i> &nbsp;Delivery Available</h5>
+            <div class="cv-info-icon"><i class="bi bi-truck"></i></div>
+            <h5>Delivery Available</h5>
             <p>Nationwide delivery for all orders placed through the site</p>
         </div>
         <div class="cv-info-strip-item">
-            <h5><i class="bi bi-headset"></i> &nbsp;School Project</h5>
+            <div class="cv-info-icon"><i class="bi bi-mortarboard"></i></div>
+            <h5>School Project</h5>
             <p>Built by CyberVision for a Web Development final requirement</p>
         </div>
     </div>
@@ -99,7 +128,7 @@ require('include/header.php');
     <div class="cv-section-inner">
         <p class="cv-section-label">Browse</p>
         <h2 class="cv-section-title">Shop by Chair Type</h2>
-        <p class="cv-section-sub">Find exactly what you need from our five chair categories.</p>
+        <p class="cv-section-sub">Find exactly what you need from our chair categories.</p>
 
         <div class="cv-category-tiles">
             <?php foreach ($categories as $cat):
@@ -121,6 +150,33 @@ require('include/header.php');
                     </div>
                 </a>
             <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Engineered for Comfort -->
+<section class="cv-section cv-comfort-section">
+    <div class="cv-section-inner">
+        <div class="cv-comfort-grid">
+            <div class="cv-comfort-intro">
+                <p class="cv-section-label">Designed for Performance</p>
+                <h2>Engineered for Comfort.<br><span>Built for Productivity.</span></h2>
+            </div>
+            <div class="cv-comfort-card">
+                <div class="cv-comfort-icon"><i class="bi bi-arrows-angle-expand"></i></div>
+                <h5>Adjustable Comfort</h5>
+                <p>Customizable to fit your ideal position.</p>
+            </div>
+            <div class="cv-comfort-card">
+                <div class="cv-comfort-icon"><i class="bi bi-wind"></i></div>
+                <h5>Breathable Materials</h5>
+                <p>Stay cool and comfortable even on long hours.</p>
+            </div>
+            <div class="cv-comfort-card">
+                <div class="cv-comfort-icon"><i class="bi bi-shield-check"></i></div>
+                <h5>Lumbar Support</h5>
+                <p>Designed to support your lower back naturally.</p>
+            </div>
         </div>
     </div>
 </section>
