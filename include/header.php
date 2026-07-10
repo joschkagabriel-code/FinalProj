@@ -25,7 +25,7 @@ if (isset($_SESSION['cart'])) {
 <nav class="cv-navbar">
     <a href="index.php" class="cv-navbar-brand">
         <?php if ($logoExists): ?>
-            <img src="<?= $logoSrc ?>" alt="">
+            <img src="<?= $logoSrc ?>" alt="" style="height:70px;width:auto;margin-bottom:10px;display:block;">
         <?php endif; ?>
         CyberVision
     </a>
