@@ -1069,3 +1069,46 @@ textarea.cv-form-control { resize: vertical; min-height: 80px; }
 .team-card:hover .text-primary { color: #4CE6E2 !important; }
 .team-card p { transition: .3s ease; }
 .team-card:hover p { color: #d4dde9; }
+
+/* ==========================================================================
+   CyberVision Header Custom Navigation Button Styling 
+   ========================================================================== */
+
+.cv-navbar-nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.cv-navbar-nav li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.cv-navbar-nav li a {
+    display: inline-block !important;
+    padding: 8px 20px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    color: var(--cv-muted) !important; /* Uses your theme's muted slate text gray */
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* Hover effect with a light teal tint background */
+.cv-navbar-nav li a:hover {
+    color: var(--cv-primary) !important; /* Changes text to match your primary theme teal */
+    background-color: rgba(23, 162, 160, 0.1) !important; /* Soft 10% translucent teal tint */
+}
+
+/* Active navigation state matching the Register button color precisely */
+.cv-navbar-nav li a.active {
+    color: #ffffff !important; /* Crisp white text */
+    background-color: var(--cv-primary) !important; /* Clean teal theme color */
+    font-weight: 600 !important;
+}
