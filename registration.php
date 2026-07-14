@@ -26,11 +26,11 @@ $logoExists = file_exists(__DIR__ . "/images/Cybervisionlogo.png");
                 <?php if ($logoExists): ?>
                     <img src="images/Cybervisionlogo.png" alt="CyberVision">
                 <?php endif; ?>
-                <span class="cv-auth-logo-name">ChairHive</span>
+                <span class="cv-auth-logo-name">CyberVision</span>
             </div>
 
             <h2 class="cv-auth-title">Create an Account</h2>
-            <p class="cv-auth-sub">Register to start shopping at ChairHive.</p>
+            <p class="cv-auth-sub">Register to start shopping at CyberVision.</p>
 
             <?php if (isset($_SESSION['errors'])): ?>
                 <div class="cv-alert cv-alert-danger">
