@@ -48,7 +48,7 @@ mysqli_close($conn);
 require('include/header.php');
 ?>
 
-<!-- Hero Section -->
+
 <section class="cv-hero">
     <div class="cv-hero-inner">
         <div class="cv-hero-left">
@@ -102,7 +102,7 @@ require('include/header.php');
     </div>
 </section>
 
-<!-- Info Strip -->
+
 <div class="cv-info-strip">
     <div class="cv-info-strip-inner">
         <div class="cv-info-strip-item">
@@ -123,7 +123,7 @@ require('include/header.php');
     </div>
 </div>
 
-<!-- Shop by Category -->
+
 <section class="cv-section">
     <div class="cv-section-inner">
         <p class="cv-section-label">Browse</p>
@@ -154,7 +154,7 @@ require('include/header.php');
     </div>
 </section>
 
-<!-- Engineered for Comfort -->
+
 <section class="cv-section cv-comfort-section">
     <div class="cv-section-inner">
         <div class="cv-comfort-grid">
@@ -181,7 +181,7 @@ require('include/header.php');
     </div>
 </section>
 
-<!-- Featured Products -->
+
 <?php if (!empty($featured)): ?>
 <section class="cv-section cv-section-light">
     <div class="cv-section-inner">
@@ -238,7 +238,7 @@ require('include/header.php');
 </section>
 <?php endif; ?>
 
-<!-- About Strip -->
+
 <section class="cv-section">
     <div class="cv-section-inner">
         <div class="row g-4">

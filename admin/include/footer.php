@@ -1,9 +1,9 @@
-        </div><!-- /admin-main -->
+</div><!-- /admin-main -->
     </div><!-- /row -->
 </div><!-- /container-fluid -->
 
-<footer style="background:#0E7490;color:rgba(255,255,255,0.45);text-align:center;font-size:0.74rem;padding:12px 24px;">
-    <strong style="color:rgba(255,255,255,0.65);">CyberVision</strong> &mdash;
+<footer style="background:var(--cv-panel);border-top:1px solid var(--cv-border);color:var(--cv-muted);text-align:center;font-size:0.74rem;padding:12px 24px;">
+    <strong style="color:var(--cv-text);">CyberVision</strong> &mdash;
     <strong>Disclaimer:</strong> This website was created for educational purposes only and is a requirement for our final project.
 </footer>
 

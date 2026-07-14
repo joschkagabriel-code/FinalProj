@@ -70,15 +70,15 @@ require('include/header.php');
 ?>
 
 <div class="mb-4">
-    <h4 class="fw-bold mb-0"><i class="bi bi-box-seam"></i> Inventory &amp; Pricing</h4>
-    <p class="text-muted small">Add new chairs or update stock counts and prices for existing ones.</p>
+    <h4 class="fw-bold mb-0" style="color:var(--cv-text);"><i class="bi bi-box-seam" style="color:var(--cv-accent);"></i> Inventory &amp; Pricing</h4>
+    <p class="small mb-0" style="color:var(--cv-muted);">Add new chairs or update stock counts and prices for existing ones.</p>
 </div>
 
 <?php if ($message): ?>
     <div class="cv-alert cv-alert-<?= $type ?> mb-4"><?= htmlspecialchars($message) ?></div>
 <?php endif; ?>
 
-<!-- Add / Edit Form -->
+
 <div class="cv-card mb-4">
     <p class="cv-card-title"><?= $editingProduct ? 'Edit Chair' : 'Add New Chair' ?></p>
     <form action="inventory.php" method="post" novalidate>
@@ -115,8 +115,8 @@ require('include/header.php');
                        value="<?= htmlspecialchars($editingProduct['stock_qty'] ?? '') ?>">
             </div>
             <div class="col-md-4 d-flex align-items-end pb-1">
-                <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;cursor:pointer;">
-                    <input type="checkbox" name="is_active" value="1" style="width:auto;accent-color:#0E7490;"
+                <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;cursor:pointer;color:var(--cv-text);">
+                    <input type="checkbox" name="is_active" value="1" style="width:auto;accent-color:var(--cv-primary);"
                            <?= (!$editingProduct || $editingProduct['is_active']) ? 'checked' : '' ?>>
                     Visible in store
                 </label>
@@ -131,7 +131,7 @@ require('include/header.php');
     </form>
 </div>
 
-<!-- Products Table -->
+
 <div class="cv-card">
     <p class="cv-card-title">All Chairs</p>
     <div class="cv-table-wrap">
@@ -146,9 +146,9 @@ require('include/header.php');
                 ?>
                     <tr>
                         <td><?= $counter++ ?></td>
-                        <td class="fw-semibold"><?= htmlspecialchars($p['name']) ?></td>
-                        <td class="text-muted small"><?= htmlspecialchars($p['category']) ?></td>
-                        <td>&#8369;<?= number_format($p['price'], 2) ?></td>
+                        <td class="fw-semibold" style="color:var(--cv-text);"><?= htmlspecialchars($p['name']) ?></td>
+                        <td class="small" style="color:var(--cv-muted);"><?= htmlspecialchars($p['category']) ?></td>
+                        <td style="color:var(--cv-accent);font-weight:600;">&#8369;<?= number_format($p['price'], 2) ?></td>
                         <td>
                             <?= (int)$p['stock_qty'] ?>
                             <?php if ((int)$p['stock_qty'] == 0): ?>
@@ -159,9 +159,9 @@ require('include/header.php');
                         </td>
                         <td>
                             <?php if ($p['is_active']): ?>
-                                <span class="badge" style="background:#16A34A;">Visible</span>
+                                <span style="background:rgba(23,162,160,0.14);color:#6EE7DE;border:1px solid rgba(23,162,160,0.35);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Visible</span>
                             <?php else: ?>
-                                <span class="badge bg-secondary">Hidden</span>
+                                <span style="background:rgba(124,140,163,0.14);color:var(--cv-muted);border:1px solid var(--cv-border);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Hidden</span>
                             <?php endif; ?>
                         </td>
                         <td>
@@ -172,7 +172,7 @@ require('include/header.php');
                     </tr>
                 <?php endwhile; ?>
                 <?php if (mysqli_num_rows($prod_result) == 0): ?>
-                    <tr><td colspan="7" class="text-center text-muted" style="padding:24px;">No chairs found.</td></tr>
+                    <tr><td colspan="7" class="text-center" style="padding:24px;color:var(--cv-muted);">No chairs found.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

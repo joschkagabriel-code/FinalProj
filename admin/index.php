@@ -19,11 +19,12 @@ require('include/header.php');
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h4 class="fw-bold mb-0">Dashboard</h4>
-        <p class="text-muted mb-0 small">Quick overview of ChairHive.</p>
+        <h4 class="fw-bold mb-0" style="color:var(--cv-text);">Dashboard</h4>
+        <p class="mb-0 small" style="color:var(--cv-muted);">Quick overview of ChairHive.</p>
     </div>
-    <span class="badge" style="background:#0E7490;font-size:0.82rem;padding:8px 14px;">
-        <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION['fullname']) ?>
+    <span class="cv-nav-greeting" style="border:1px solid var(--cv-border);border-radius:999px;padding:8px 16px;background:var(--cv-panel);">
+        <i class="bi bi-person-circle" style="color:var(--cv-accent);"></i>
+        <span style="color:var(--cv-text);"><?= htmlspecialchars($_SESSION['fullname']) ?></span>
     </span>
 </div>
 
@@ -36,20 +37,28 @@ require('include/header.php');
         array('label'=>'Buyers',            'value'=>$total_buyers,   'warn'=>false),
         array('label'=>'Admin Users',       'value'=>$total_admins,   'warn'=>false),
         array('label'=>'Orders Placed',     'value'=>$total_orders,   'warn'=>false),
-        array('label'=>'Total Revenue',     'value'=>'&#8369;'.number_format($total_revenue,2), 'warn'=>false, 'green'=>true),
+        array('label'=>'Total Revenue',     'value'=>'&#8369;'.number_format($total_revenue,2), 'warn'=>false, 'accent'=>true),
     );
     foreach ($stats as $s):
+        $valueColor = $s['warn'] ? '#F87171' : (isset($s['accent']) ? 'var(--cv-accent)' : 'var(--cv-text)');
+        $cardStyle  = $s['warn'] ? 'border-color:#F87171;' : '';
     ?>
         <div class="col">
-            <div class="cv-card h-100 <?= $s['warn'] ? 'border-danger' : '' ?>" style="<?= $s['warn'] ? 'border-color:#DC2626!important;' : '' ?>">
-                <div class="text-muted small text-uppercase mb-1" style="font-size:0.72rem;letter-spacing:0.06em;"><?= $s['label'] ?></div>
-                <div class="fw-bold" style="font-size:1.6rem;color:<?= $s['warn'] ? '#DC2626' : (isset($s['green']) ? '#16A34A' : '#0E7490') ?>;">
+            <div class="cv-card h-100" style="<?= $cardStyle ?>">
+                <div class="mb-1" style="font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--cv-muted);"><?= $s['label'] ?></div>
+                <div class="fw-bold" style="font-size:1.6rem;color:<?= $valueColor ?>;">
                     <?= $s['value'] ?>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
+
+<?php if ($low_stock > 0): ?>
+<div class="cv-alert cv-alert-warning">
+    <p><i class="bi bi-exclamation-triangle"></i> <?= $low_stock ?> chair<?= $low_stock > 1 ? 's are' : ' is' ?> running low on stock (5 or fewer units).</p>
+</div>
+<?php endif; ?>
 
 <!-- Recent Activity -->
 <div class="cv-card">
@@ -69,14 +78,18 @@ require('include/header.php');
                     $counter++;
                 ?>
                     <tr>
-                        <td class="small text-muted"><?= date("M d, Y g:i A", strtotime($log['date_created'])) ?></td>
+                        <td class="small" style="color:var(--cv-muted);"><?= date("M d, Y g:i A", strtotime($log['date_created'])) ?></td>
                         <td><?= htmlspecialchars($log['actor_name']) ?></td>
-                        <td><span class="badge" style="background:#0E7490;"><?= htmlspecialchars($log['action']) ?></span></td>
-                        <td class="small"><?= htmlspecialchars($log['description']) ?></td>
+                        <td>
+                            <span style="background:rgba(45,224,219,0.1);color:var(--cv-accent);border:1px solid var(--cv-border);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">
+                                <?= htmlspecialchars($log['action']) ?>
+                            </span>
+                        </td>
+                        <td class="small" style="color:var(--cv-muted);"><?= htmlspecialchars($log['description']) ?></td>
                     </tr>
                 <?php endwhile; ?>
                 <?php if ($counter == 0): ?>
-                    <tr><td colspan="4" class="text-center text-muted" style="padding:24px;">No activity recorded yet.</td></tr>
+                    <tr><td colspan="4" class="text-center" style="padding:24px;color:var(--cv-muted);">No activity recorded yet.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

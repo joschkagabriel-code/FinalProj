@@ -72,15 +72,15 @@ require('include/header.php');
 ?>
 
 <div class="mb-4">
-    <h4 class="fw-bold mb-0"><i class="bi bi-people"></i> Admin Users</h4>
-    <p class="text-muted small">Add or modify accounts allowed to manage this store.</p>
+    <h4 class="fw-bold mb-0" style="color:var(--cv-text);"><i class="bi bi-people" style="color:var(--cv-accent);"></i> Admin Users</h4>
+    <p class="small mb-0" style="color:var(--cv-muted);">Add or modify accounts allowed to manage this store.</p>
 </div>
 
 <?php if ($message): ?>
     <div class="cv-alert cv-alert-<?= $type ?> mb-4"><?= htmlspecialchars($message) ?></div>
 <?php endif; ?>
 
-<!-- Add / Edit Form -->
+
 <div class="cv-card mb-4">
     <p class="cv-card-title"><?= $editingUser ? 'Edit Admin User' : 'Add New Admin User' ?></p>
     <form action="users.php" method="post" novalidate>
@@ -110,8 +110,8 @@ require('include/header.php');
             <input type="text" name="address" class="cv-form-control" value="<?= htmlspecialchars($editingUser['address'] ?? '') ?>">
         </div>
         <div class="cv-mb">
-            <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;cursor:pointer;">
-                <input type="checkbox" name="is_active" value="1" style="width:auto;accent-color:#0E7490;"
+            <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;cursor:pointer;color:var(--cv-text);">
+                <input type="checkbox" name="is_active" value="1" style="width:auto;accent-color:var(--cv-primary);"
                        <?= (!$editingUser || $editingUser['is_active']) ? 'checked' : '' ?>>
                 Active (uncheck to disable this admin's login)
             </label>
@@ -125,7 +125,7 @@ require('include/header.php');
     </form>
 </div>
 
-<!-- Table -->
+
 <div class="cv-card">
     <p class="cv-card-title">All Admin Users</p>
     <div class="cv-table-wrap">
@@ -140,22 +140,22 @@ require('include/header.php');
                 ?>
                     <tr>
                         <td><?= $counter++ ?></td>
-                        <td class="fw-semibold"><?= htmlspecialchars($a['full_name']) ?></td>
-                        <td><?= htmlspecialchars($a['email']) ?></td>
-                        <td><?= htmlspecialchars($a['contact_number']) ?></td>
+                        <td class="fw-semibold" style="color:var(--cv-text);"><?= htmlspecialchars($a['full_name']) ?></td>
+                        <td style="color:var(--cv-text);"><?= htmlspecialchars($a['email']) ?></td>
+                        <td style="color:var(--cv-text);"><?= htmlspecialchars($a['contact_number']) ?></td>
                         <td>
                             <?php if ($a['is_active']): ?>
-                                <span class="badge" style="background:#16A34A;">Active</span>
+                                <span style="background:rgba(23,162,160,0.14);color:#6EE7DE;border:1px solid rgba(23,162,160,0.35);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Active</span>
                             <?php else: ?>
-                                <span class="badge bg-danger">Disabled</span>
+                                <span style="background:rgba(220,38,38,0.14);color:#FCA5A5;border:1px solid rgba(220,38,38,0.35);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Disabled</span>
                             <?php endif; ?>
                         </td>
-                        <td class="text-muted small"><?= date("M d, Y", strtotime($a['date_created'])) ?></td>
+                        <td class="small" style="color:var(--cv-muted);"><?= date("M d, Y", strtotime($a['date_created'])) ?></td>
                         <td><a href="users.php?edit=<?= (int)$a['id'] ?>" class="btn-cv-outline" style="padding:5px 12px;font-size:0.8rem;"><i class="bi bi-pencil"></i> Edit</a></td>
                     </tr>
                 <?php endwhile; ?>
                 <?php if (mysqli_num_rows($admins_result) == 0): ?>
-                    <tr><td colspan="7" class="text-center text-muted" style="padding:24px;">No admin users found.</td></tr>
+                    <tr><td colspan="7" class="text-center" style="padding:24px;color:var(--cv-muted);">No admin users found.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

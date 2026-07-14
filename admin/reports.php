@@ -3,14 +3,14 @@ session_start();
 if (!isset($_SESSION['islogged']) || !isset($_SESSION['isadmin'])) { header('Location: ../login.php'); exit(); }
 require_once('../db.php');
 
-// Inventory report
+
 $inv_result    = mysqli_query($conn, "SELECT * FROM products ORDER BY category, name");
 $product_count = mysqli_num_rows($inv_result);
 $totals        = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(stock_qty) as units, SUM(stock_qty*price) as value FROM products WHERE is_active=1"));
 $total_units   = $totals['units'] ?? 0;
 $total_value   = $totals['value'] ?? 0;
 
-// Audit log report
+
 $user_filter  = isset($_GET['user']) ? (int)$_GET['user'] : 0;
 $audit_result = $user_filter > 0
     ? mysqli_query($conn, "SELECT * FROM audit_log WHERE user_id=$user_filter ORDER BY date_created DESC LIMIT 300")
@@ -24,18 +24,18 @@ require('include/header.php');
 ?>
 
 <div class="mb-4">
-    <h4 class="fw-bold mb-0"><i class="bi bi-bar-chart-line"></i> Reports</h4>
-    <p class="text-muted small">Inventory levels and the full system audit trail.</p>
+    <h4 class="fw-bold mb-0" style="color:var(--cv-text);"><i class="bi bi-bar-chart-line" style="color:var(--cv-accent);"></i> Reports</h4>
+    <p class="small mb-0" style="color:var(--cv-muted);">Inventory levels and the full system audit trail.</p>
 </div>
 
-<!-- Inventory Report -->
+
 <div class="cv-card mb-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <p class="cv-card-title mb-0">Inventory Report</p>
-        <span class="text-muted small">
+        <span class="small" style="color:var(--cv-muted);">
             <?= $product_count ?> chairs &nbsp;&middot;&nbsp;
             <?= number_format($total_units) ?> units &nbsp;&middot;&nbsp;
-            Total value: <strong>&#8369;<?= number_format($total_value, 2) ?></strong>
+            Total value: <strong style="color:var(--cv-accent);">&#8369;<?= number_format($total_value, 2) ?></strong>
         </span>
     </div>
     <div class="cv-table-wrap">
@@ -50,9 +50,9 @@ require('include/header.php');
                 ?>
                     <tr>
                         <td><?= $counter++ ?></td>
-                        <td class="fw-semibold"><?= htmlspecialchars($p['name']) ?></td>
-                        <td class="text-muted small"><?= htmlspecialchars($p['category']) ?></td>
-                        <td>&#8369;<?= number_format($p['price'], 2) ?></td>
+                        <td class="fw-semibold" style="color:var(--cv-text);"><?= htmlspecialchars($p['name']) ?></td>
+                        <td class="small" style="color:var(--cv-muted);"><?= htmlspecialchars($p['category']) ?></td>
+                        <td style="color:var(--cv-accent);font-weight:600;">&#8369;<?= number_format($p['price'], 2) ?></td>
                         <td>
                             <?= (int)$p['stock_qty'] ?>
                             <?php if ((int)$p['stock_qty'] == 0): ?>
@@ -61,12 +61,12 @@ require('include/header.php');
                                 <span class="cv-badge-low">Low</span>
                             <?php endif; ?>
                         </td>
-                        <td>&#8369;<?= number_format($p['price'] * $p['stock_qty'], 2) ?></td>
+                        <td style="color:var(--cv-text);">&#8369;<?= number_format($p['price'] * $p['stock_qty'], 2) ?></td>
                         <td>
                             <?php if ($p['is_active']): ?>
-                                <span class="badge" style="background:#16A34A;">Visible</span>
+                                <span style="background:rgba(23,162,160,0.14);color:#6EE7DE;border:1px solid rgba(23,162,160,0.35);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Visible</span>
                             <?php else: ?>
-                                <span class="badge bg-secondary">Hidden</span>
+                                <span style="background:rgba(124,140,163,0.14);color:var(--cv-muted);border:1px solid var(--cv-border);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Hidden</span>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -76,13 +76,13 @@ require('include/header.php');
     </div>
 </div>
 
-<!-- Audit Log Report -->
+
 <div class="cv-card">
     <div class="d-flex justify-content-between align-items-center mb-1">
         <p class="cv-card-title mb-0">Audit Log Report</p>
-        <span class="text-muted small">Last <?= mysqli_num_rows($audit_result) ?> activities</span>
+        <span class="small" style="color:var(--cv-muted);">Last <?= mysqli_num_rows($audit_result) ?> activities</span>
     </div>
-    <p class="text-muted small mb-3">Tracks every login, registration, order, inventory change, and admin-user change performed by whoever was logged in at the time.</p>
+    <p class="small mb-3" style="color:var(--cv-muted);">Tracks every login, registration, order, inventory change, and admin-user change performed by whoever was logged in at the time.</p>
 
     <form action="reports.php" method="get" class="d-flex align-items-center gap-2 mb-3">
         <label class="cv-form-label mb-0" style="white-space:nowrap;">Filter by user:</label>
@@ -108,21 +108,25 @@ require('include/header.php');
                 ?>
                     <tr>
                         <td><?= $counter++ ?></td>
-                        <td class="small text-muted"><?= date("M d, Y g:i A", strtotime($log['date_created'])) ?></td>
-                        <td class="fw-semibold"><?= htmlspecialchars($log['actor_name']) ?></td>
+                        <td class="small" style="color:var(--cv-muted);"><?= date("M d, Y g:i A", strtotime($log['date_created'])) ?></td>
+                        <td class="fw-semibold" style="color:var(--cv-text);"><?= htmlspecialchars($log['actor_name']) ?></td>
                         <td>
                             <?php if ($log['actor_role'] == 'admin'): ?>
-                                <span class="badge" style="background:#0E7490;">Admin</span>
+                                <span style="background:rgba(45,224,219,0.12);color:var(--cv-accent);border:1px solid var(--cv-border);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Admin</span>
                             <?php else: ?>
-                                <span class="badge bg-secondary">Buyer</span>
+                                <span style="background:rgba(124,140,163,0.14);color:var(--cv-muted);border:1px solid var(--cv-border);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">Buyer</span>
                             <?php endif; ?>
                         </td>
-                        <td><span class="badge" style="background:#0891B2;"><?= htmlspecialchars($log['action']) ?></span></td>
-                        <td class="small"><?= htmlspecialchars($log['description']) ?></td>
+                        <td>
+                            <span style="background:rgba(23,162,160,0.14);color:#6EE7DE;border:1px solid rgba(23,162,160,0.35);border-radius:999px;padding:3px 10px;font-size:0.74rem;font-weight:600;">
+                                <?= htmlspecialchars($log['action']) ?>
+                            </span>
+                        </td>
+                        <td class="small" style="color:var(--cv-muted);"><?= htmlspecialchars($log['description']) ?></td>
                     </tr>
                 <?php endwhile; ?>
                 <?php if (mysqli_num_rows($audit_result) == 0): ?>
-                    <tr><td colspan="6" class="text-center text-muted" style="padding:24px;">No activity recorded yet.</td></tr>
+                    <tr><td colspan="6" class="text-center" style="padding:24px;color:var(--cv-muted);">No activity recorded yet.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

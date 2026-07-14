@@ -50,7 +50,7 @@ require('include/header.php');
 
     <div class="cv-store-layout">
 
-        <!-- Sidebar category nav -->
+   
         <aside class="cv-store-sidebar">
             <div class="cv-sidebar-label">Categories</div>
             <nav class="cv-sidebar-nav">
@@ -69,7 +69,7 @@ require('include/header.php');
             </nav>
         </aside>
 
-        <!-- Main content: one category at a time -->
+      
         <div class="cv-store-main">
 
             <div class="cv-content-toolbar">
